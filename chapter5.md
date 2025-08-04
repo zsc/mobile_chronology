@@ -20,39 +20,110 @@ Android 6.0引入的运行时权限彻底改变了这一局面：
 ```
 危险权限组划分：
 - 位置（Location）
+  - ACCESS_FINE_LOCATION（精确位置）
+  - ACCESS_COARSE_LOCATION（粗略位置）
 - 相机（Camera）
+  - CAMERA（相机访问）
 - 麦克风（Microphone）
+  - RECORD_AUDIO（录音）
 - 通讯录（Contacts）
+  - READ_CONTACTS（读取联系人）
+  - WRITE_CONTACTS（写入联系人）
+  - GET_ACCOUNTS（获取账户）
 - 电话（Phone）
+  - READ_PHONE_STATE（读取手机状态）
+  - CALL_PHONE（拨打电话）
+  - READ_CALL_LOG（读取通话记录）
+  - WRITE_CALL_LOG（写入通话记录）
+  - ADD_VOICEMAIL（添加语音邮件）
+  - USE_SIP（使用SIP）
+  - PROCESS_OUTGOING_CALLS（处理拨出电话）
 - 短信（SMS）
+  - SEND_SMS（发送短信）
+  - RECEIVE_SMS（接收短信）
+  - READ_SMS（读取短信）
+  - RECEIVE_WAP_PUSH（接收WAP推送）
+  - RECEIVE_MMS（接收彩信）
 - 日历（Calendar）
+  - READ_CALENDAR（读取日历）
+  - WRITE_CALENDAR（写入日历）
 - 传感器（Sensors）
+  - BODY_SENSORS（身体传感器）
 - 存储（Storage）
+  - READ_EXTERNAL_STORAGE（读取外部存储）
+  - WRITE_EXTERNAL_STORAGE（写入外部存储）
 ```
 
 开发者需要在代码中动态请求权限：
-1. 检查是否已有权限
-2. 如果没有，在需要时请求
-3. 处理用户的授权结果
-4. 提供合理的权限使用说明
+1. 检查是否已有权限（checkSelfPermission）
+2. 如果没有，在需要时请求（requestPermissions）
+3. 处理用户的授权结果（onRequestPermissionsResult）
+4. 提供合理的权限使用说明（shouldShowRequestPermissionRationale）
+
+**实际代码示例**：
+```java
+// 检查权限
+if (ContextCompat.checkSelfPermission(this, 
+    Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+    // 解释为什么需要权限
+    if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+        Manifest.permission.CAMERA)) {
+        // 显示解释对话框
+        showExplanationDialog();
+    } else {
+        // 请求权限
+        ActivityCompat.requestPermissions(this,
+            new String[]{Manifest.permission.CAMERA},
+            MY_PERMISSIONS_REQUEST_CAMERA);
+    }
+}
+```
 
 这一改变对整个Android生态产生了深远影响：
-- **用户体验提升**：用户可以更精细地控制应用权限
-- **开发难度增加**：开发者需要重构权限相关代码
-- **隐私保护加强**：减少了应用滥用权限的可能性
+- **用户体验提升**：用户可以更精细地控制应用权限，随时在设置中修改
+- **开发难度增加**：开发者需要重构权限相关代码，处理各种权限组合情况
+- **隐私保护加强**：减少了应用滥用权限的可能性，用户数据更安全
+- **应用兼容性问题**：targetSdkVersion 23以下的应用仍使用旧权限模式
+- **权限使用透明化**：系统会记录权限使用情况，用户可查看
+
+**权限最佳实践**：
+1. **最小权限原则**：只申请必要的权限
+2. **渐进式请求**：在需要时才请求，不要一次请求所有
+3. **清晰的解释**：告诉用户为什么需要这个权限
+4. **优雅降级**：权限被拒绝时提供替代方案
+5. **权限分组请求**：相关权限一起请求，提高通过率
 
 #### 应用待机模式（App Standby）
 
 Android 6.0还引入了应用待机模式，当应用长时间未使用时，系统会限制其后台活动：
-- 网络访问受限
-- 同步操作延迟
-- 定时任务推迟
+- 网络访问受限（每天仅允许一次同步窗口）
+- 同步操作延迟（JobScheduler任务推迟执行）
+- 定时任务推迟（AlarmManager闹钟延迟触发）
 
-这一特性显著改善了电池续航，但也给依赖后台服务的应用带来了挑战。
+**进入待机模式的条件**：
+1. 应用没有前台Activity
+2. 应用没有前台Service
+3. 应用没有正在进行的通知
+4. 用户一段时间内未主动启动应用
+5. 应用不在白名单中（如即时通讯应用）
+
+**对开发者的影响**：
+- **即时通讯应用**：需要申请加入白名单
+- **新闻应用**：后台更新频率降低
+- **社交应用**：推送延迟可能增加
+- **工具应用**：定时任务需要重新设计
+
+**应对策略**：
+1. 使用GCM/FCM高优先级消息唤醒应用
+2. 引导用户将应用加入电池优化白名单
+3. 使用JobScheduler替代AlarmManager
+4. 优化应用，减少后台活动需求
+
+这一特性显著改善了电池续航（平均提升15-20%），但也给依赖后台服务的应用带来了挑战。后续的Android版本（7.0 Doze模式、8.0后台限制）在此基础上进一步加强了后台管理。
 
 ### iOS 9：生产力工具的进化
 
-2015年9月16日，Apple发布iOS 9，虽然表面上看变化不大，但在生产力和性能优化方面做出了重要改进。
+2015年9月16日，Apple发布iOS 9，虽然表面上看变化不大，但在生产力和性能优化方面做出了重要改进。这个版本支持从iPhone 4s到最新的iPhone 6s，是iOS历史上兼容性最好的版本之一。
 
 #### iPad分屏多任务
 
@@ -127,7 +198,7 @@ iOS 9在性能优化方面下了大功夫：
 
 ### 移动支付安全架构升级
 
-2015年，随着移动支付的爆发式增长，安全成为最关键的课题。
+2015年，随着移动支付的爆发式增长，安全成为最关键的课题。中国移动支付交易额达到108.22万亿元，同比增长379.06%，安全需求前所未有的迫切。
 
 #### 硬件安全模块（Secure Element）
 
