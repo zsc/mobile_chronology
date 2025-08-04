@@ -27,6 +27,22 @@
 - Qualcomm AI Engine采用融合加速器架构，CPU、GPU、NPU协同工作
 - 支持多模态AI，可同时处理文本、图像、音频
 - 在MLPerf基准测试中，推理性能较前代提升2.5倍
+- **技术细节**：
+  - Hexagon NPU采用专用张量加速器（HTA）和标量加速器（HVX）
+  - 支持Transformer专用加速，自注意力计算效率提升3倍
+  - 内存带宽达到64GB/s，满足大模型数据吞吐需求
+  - AI Engine Direct架构允许开发者直接访问所有AI加速器
+  - 支持模型并行和流水线并行，充分利用异构计算资源
+- **能效优化**：
+  - 动态电压频率调节（DVFS）根据AI负载智能调整
+  - 低功耗岛设计，待机AI监听功耗仅10mW
+  - Adreno GPU支持FP16/INT8混合精度，功耗降低45%
+  - 专用AI电源管理单元，毫秒级功耗状态切换
+- **开发者支持**：
+  - Qualcomm AI Studio提供模型分析和优化工具
+  - 支持ONNX、TensorFlow Lite、PyTorch Mobile等格式
+  - AI Model Efficiency Toolkit（AIMET）自动量化工具
+  - 提供100+预训练模型，开箱即用
 
 **联发科天玑9300**（2023年11月发布）
 - 第七代APU性能提升2倍，功耗降低45%
@@ -37,6 +53,24 @@
 - APU 790集成6个AI核心，算力达到48 TOPS
 - 支持LoRA低秩适应技术，实现模型快速微调
 - 内置AI-ISP，支持语义分割和实时画质增强
+- **架构创新**：
+  - 全大核设计理念：抛弃能效核心，全部采用高性能核心
+  - APU 790采用可扩展架构，支持1-6核动态调度
+  - 专用Transformer加速引擎，处理速度提升4倍
+  - 硬件级LoRA支持，微调速度提升10倍
+  - 内存压缩技术，有效带宽提升50%
+- **生成式AI优化**：
+  - 支持Stable Diffusion 1.5本地运行，512×512图像生成仅需0.5秒
+  - Llama 2-7B每秒可生成20个token
+  - 支持多LoRA模型并行，实现个性化AI体验
+  - NeuroPilot Fusion技术，端云模型无缝切换
+  - 支持量化感知训练（QAT），精度损失降低60%
+- **AI-ISP创新**：
+  - 语义感知HDR：识别场景内容智能调节曝光
+  - AI降噪：基于内容的自适应降噪，保留更多细节
+  - 实时语义分割：60fps 4K视频实时处理
+  - AI超分辨率：1080p实时上采样到4K
+  - 计算摄影引擎：支持Magic Eraser类似功能
 
 **苹果A17 Pro**（2023年9月发布）
 - 神经引擎从16核升级到专用的神经处理单元
@@ -47,6 +81,29 @@
 - 专用AV1解码器，支持高效视频处理
 - 神经引擎支持FP16和INT8混合精度运算
 - Metal Performance Shaders优化，GPU ML性能提升20%
+- **3nm工艺优势**：
+  - 晶体管密度提升30%，为AI单元腾出更多空间
+  - 功耗效率提升25%，相同性能下功耗更低
+  - 高性能模式下主频可达3.78GHz
+  - 缓存容量增加，L2缓存达到16MB
+  - 内存带宽提升至50GB/s
+- **神经引擎架构**：
+  - 采用新一代矩阵乘法单元（AMX）
+  - 支持稀疏计算，效率提升2倍
+  - 专用Transformer加速器，优化自注意力计算
+  - 与GPU共享统一内存，减少数据搬移
+  - 支持FP32/FP16/INT8/INT4多精度计算
+- **Core ML 4优化**：
+  - Create ML支持本地模型训练
+  - 支持Stable Diffusion和大语言模型
+  - 模型压缩工具，自动优化模型大小
+  - 背景模糊、物体追踪等内置AI功能
+  - Swift API简化，3行代码即可调用AI模型
+- **隐私优先设计**：
+  - Secure Enclave保护AI模型和数据
+  - 差分隐私技术，防止模型泄露用户信息
+  - 本地语音识别，Siri请求不上传
+  - 图像分析完全本地化，照片不离开设备
 
 **三星Exynos 2400**（2023年10月发布）
 - 集成专用AI处理单元，性能提升14.7倍
@@ -55,6 +112,22 @@
 - 支持8K 60fps视频录制与AI增强
 - RDNA3架构GPU，支持光线追踪
 - 5G调制解调器集成AI优化，智能网络切换
+- **AI处理单元详情**：
+  - 双NPU设计，可独立或协同工作
+  - 峰值算力达到40 TOPS
+  - 支持INT8/INT16/FP16精度
+  - 专用视觉处理单元（VPU）
+  - 语音处理单元（APU）功耗仅5mW
+- **RDNA3 GPU AI能力**：
+  - 支持矩阵乘法指令（WMMA）
+  - Ray Tracing与AI结合，实现智能降噪
+  - GPU算力6 TFLOPS，可辅助AI计算
+  - 支持DirectML和Vulkan ML
+- **创新功能**：
+  - AI视频画质增强：SDR转HDR，30fps插帧到120fps
+  - 实时对象移除：视频中移除移动物体
+  - AI防抖：基于陀螺仪和AI的混合防抖
+  - 夜景视频：AI多帧合成，亮度提升10倍
 
 **Google Tensor G3**（2023年10月发布）
 - 专为Pixel设计，强调AI优化
@@ -63,6 +136,28 @@
 - Magic Eraser、Best Take等独占功能
 - Titan M2安全芯片，保护AI数据处理
 - 支持AV1编码，视频通话质量提升
+- **TPU v5架构特点**：
+  - 专为Transformer优化的矩阵单元
+  - 支持bfloat16精度，平衡精度与性能
+  - 128MB专用AI缓存
+  - 与Google云TPU架构一致，便于模型迁移
+  - 支持JAX和TensorFlow原生加速
+- **独占AI功能深度解析**：
+  - Magic Eraser：基于图像修复神经网络，支持批量处理
+  - Best Take：多张照片中选择最佳表情组合
+  - Audio Magic Eraser：AI分离并消除背景噪音
+  - Cinematic Blur：单摄像头实现电影级景深
+  - Real Tone：针对不同肤色的AI优化
+- **系统级AI整合**：
+  - Live Translate：系统级实时翻译，支持90+语言
+  - Call Screen：AI接听电话，实时转文字
+  - Hold for Me：AI监听等待音乐，接通时提醒
+  - Crash Detection：AI检测车祸并自动求救
+- **隐私与安全**：
+  - Private Compute Core：隔离的AI计算环境
+  - Federated Learning：本地学习，只上传模型更新
+  - 端侧语音处理：Google Assistant完全离线
+  - Titan M2协处理器：硬件级AI模型保护
 
 ### 1.2 端侧大模型技术突破
 
@@ -107,6 +202,16 @@
   - 激活值checkpointing
   - 梯度累积优化
   - 动态内存池管理
+  - **高效内存管理**：
+    - Memory Arena：大块内存预分配
+    - Object pooling：对象池复用
+    - Reference counting：引用计数管理
+    - Garbage collection优化
+- **端侧特殊优化**：
+  - Unified Memory：统一内存架构（Apple）
+  - Zero-copy：零拷贝技术
+  - Memory compression：实时内存压缩
+  - Swap to storage：智能交换到存储
 
 **推理加速技术**
 - 算子融合：减少内存访问次数
@@ -114,21 +219,51 @@
   - Multi-Head Attention整体优化
   - 自定义CUDA kernel实现
   - 性能提升：推理延迟减少35%
+  - **融合策略**：
+    - Vertical fusion：垂直融合，减少中间结果
+    - Horizontal fusion：水平融合，并行计算
+    - Pattern matching：模式匹配自动融合
+    - Graph optimization：计算图优化
 - 动态批处理：提高硬件利用率
   - 连续批处理（Continuous Batching）
   - 请求级并行调度
   - GPU利用率从40%提升至85%
   - 吞吐量提升2.8倍
+  - **调度算法**：
+    - ORCA：请求级调度
+    - Iteration-level scheduling
+    - Priority-based batching
+    - Preemptive scheduling
 - 稀疏计算：跳过零值运算
   - 2:4结构化稀疏（NVIDIA支持）
   - 动态稀疏激活
   - 稀疏注意力模式
   - 计算量减少50%，精度损失<1%
+  - **稀疏技术进阶**：
+    - Block-sparse：块稀疏，硬件友好
+    - N:M sparsity：结构化稀疏模式
+    - Dynamic sparsity：动态稀疏率
+    - Sparse kernels：专用稀疏核函数
 - 编译优化：针对特定硬件优化
   - TVM、MLIR等编译器框架
   - 硬件特定指令集优化
   - 自动算子调优
   - 端到端延迟优化30%
+  - **编译器技术**：
+    - Auto-tuning：自动调优参数
+    - Polyhedral optimization
+    - Loop tiling/unrolling
+    - Vectorization优化
+- **端侧特殊加速**：
+  - NPU专用指令：充分利用AI加速器
+  - Heterogeneous computing：CPU+GPU+NPU协同
+  - Edge TPU优化：Google的边缘计算方案
+  - Model caching：模型缓存减少加载时间
+- **实时性保障**：
+  - Deterministic execution：确定性执行
+  - Deadline scheduling：截止时间调度
+  - QoS guarantees：服务质量保证
+  - Fallback mechanisms：降级机制
 
 ### 1.3 端侧AI的实际应用
 
