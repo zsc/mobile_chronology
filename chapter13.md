@@ -43,6 +43,25 @@
   - 支持ONNX、TensorFlow Lite、PyTorch Mobile等格式
   - AI Model Efficiency Toolkit（AIMET）自动量化工具
   - 提供100+预训练模型，开箱即用
+- Qualcomm AI Engine采用融合加速器架构，CPU、GPU、NPU协同工作
+- 支持多模态AI，可同时处理文本、图像、音频
+- 在MLPerf基准测试中，推理性能较前代提升2.5倍
+- **技术细节**：
+  - Hexagon NPU采用专用张量加速器（HTA）和标量加速器（HVX）
+  - 支持Transformer专用加速，自注意力计算效率提升3倍
+  - 内存带宽达到64GB/s，满足大模型数据吞吐需求
+  - AI Engine Direct架构允许开发者直接访问所有AI加速器
+  - 支持模型并行和流水线并行，充分利用异构计算资源
+- **能效优化**：
+  - 动态电压频率调节（DVFS）根据AI负载智能调整
+  - 低功耗岛设计，待机AI监听功耗仅10mW
+  - Adreno GPU支持FP16/INT8混合精度，功耗降低45%
+  - 专用AI电源管理单元，毫秒级功耗状态切换
+- **开发者支持**：
+  - Qualcomm AI Studio提供模型分析和优化工具
+  - 支持ONNX、TensorFlow Lite、PyTorch Mobile等格式
+  - AI Model Efficiency Toolkit（AIMET）自动量化工具
+  - 提供100+预训练模型，开箱即用
 
 **联发科天玑9300**（2023年11月发布）
 - 第七代APU性能提升2倍，功耗降低45%
@@ -50,6 +69,27 @@
 - 生成式AI引擎支持端侧运行Llama 2
 - NeuroPilot AI平台提供完整开发工具链
 - 采用全大核CPU架构（4×Cortex-X4 + 4×Cortex-A720）
+- APU 790集成6个AI核心，算力达到48 TOPS
+- 支持LoRA低秩适应技术，实现模型快速微调
+- 内置AI-ISP，支持语义分割和实时画质增强
+- **架构创新**：
+  - 全大核设计理念：抛弃能效核心，全部采用高性能核心
+  - APU 790采用可扩展架构，支持1-6核动态调度
+  - 专用Transformer加速引擎，处理速度提升4倍
+  - 硬件级LoRA支持，微调速度提升10倍
+  - 内存压缩技术，有效带宽提升50%
+- **生成式AI优化**：
+  - 支持Stable Diffusion 1.5本地运行，512×512图像生成仅需0.5秒
+  - Llama 2-7B每秒可生成20个token
+  - 支持多LoRA模型并行，实现个性化AI体验
+  - NeuroPilot Fusion技术，端云模型无缝切换
+  - 支持量化感知训练（QAT），精度损失降低60%
+- **AI-ISP创新**：
+  - 语义感知HDR：识别场景内容智能调节曝光
+  - AI降噪：基于内容的自适应降噪，保留更多细节
+  - 实时语义分割：60fps 4K视频实时处理
+  - AI超分辨率：1080p实时上采样到4K
+  - 计算摄影引擎：支持Magic Eraser类似功能
 - APU 790集成6个AI核心，算力达到48 TOPS
 - 支持LoRA低秩适应技术，实现模型快速微调
 - 内置AI-ISP，支持语义分割和实时画质增强
@@ -104,6 +144,32 @@
   - 差分隐私技术，防止模型泄露用户信息
   - 本地语音识别，Siri请求不上传
   - 图像分析完全本地化，照片不离开设备
+- 专用AV1解码器，支持高效视频处理
+- 神经引擎支持FP16和INT8混合精度运算
+- Metal Performance Shaders优化，GPU ML性能提升20%
+- **3nm工艺优势**：
+  - 晶体管密度提升30%，为AI单元腾出更多空间
+  - 功耗效率提升25%，相同性能下功耗更低
+  - 高性能模式下主频可达3.78GHz
+  - 缓存容量增加，L2缓存达到16MB
+  - 内存带宽提升至50GB/s
+- **神经引擎架构**：
+  - 采用新一代矩阵乘法单元（AMX）
+  - 支持稀疏计算，效率提升2倍
+  - 专用Transformer加速器，优化自注意力计算
+  - 与GPU共享统一内存，减少数据搬移
+  - 支持FP32/FP16/INT8/INT4多精度计算
+- **Core ML 4优化**：
+  - Create ML支持本地模型训练
+  - 支持Stable Diffusion和大语言模型
+  - 模型压缩工具，自动优化模型大小
+  - 背景模糊、物体追踪等内置AI功能
+  - Swift API简化，3行代码即可调用AI模型
+- **隐私优先设计**：
+  - Secure Enclave保护AI模型和数据
+  - 差分隐私技术，防止模型泄露用户信息
+  - 本地语音识别，Siri请求不上传
+  - 图像分析完全本地化，照片不离开设备
 
 **三星Exynos 2400**（2023年10月发布）
 - 集成专用AI处理单元，性能提升14.7倍
@@ -128,12 +194,54 @@
   - 实时对象移除：视频中移除移动物体
   - AI防抖：基于陀螺仪和AI的混合防抖
   - 夜景视频：AI多帧合成，亮度提升10倍
+- RDNA3架构GPU，支持光线追踪
+- 5G调制解调器集成AI优化，智能网络切换
+- **AI处理单元详情**：
+  - 双NPU设计，可独立或协同工作
+  - 峰值算力达到40 TOPS
+  - 支持INT8/INT16/FP16精度
+  - 专用视觉处理单元（VPU）
+  - 语音处理单元（APU）功耗仅5mW
+- **RDNA3 GPU AI能力**：
+  - 支持矩阵乘法指令（WMMA）
+  - Ray Tracing与AI结合，实现智能降噪
+  - GPU算力6 TFLOPS，可辅助AI计算
+  - 支持DirectML和Vulkan ML
+- **创新功能**：
+  - AI视频画质增强：SDR转HDR，30fps插帧到120fps
+  - 实时对象移除：视频中移除移动物体
+  - AI防抖：基于陀螺仪和AI的混合防抖
+  - 夜景视频：AI多帧合成，亮度提升10倍
 
 **Google Tensor G3**（2023年10月发布）
 - 专为Pixel设计，强调AI优化
 - TPU v5集成，机器学习性能提升25%
 - 支持端侧运行Google AI模型
 - Magic Eraser、Best Take等独占功能
+- Titan M2安全芯片，保护AI数据处理
+- 支持AV1编码，视频通话质量提升
+- **TPU v5架构特点**：
+  - 专为Transformer优化的矩阵单元
+  - 支持bfloat16精度，平衡精度与性能
+  - 128MB专用AI缓存
+  - 与Google云TPU架构一致，便于模型迁移
+  - 支持JAX和TensorFlow原生加速
+- **独占AI功能深度解析**：
+  - Magic Eraser：基于图像修复神经网络，支持批量处理
+  - Best Take：多张照片中选择最佳表情组合
+  - Audio Magic Eraser：AI分离并消除背景噪音
+  - Cinematic Blur：单摄像头实现电影级景深
+  - Real Tone：针对不同肤色的AI优化
+- **系统级AI整合**：
+  - Live Translate：系统级实时翻译，支持90+语言
+  - Call Screen：AI接听电话，实时转文字
+  - Hold for Me：AI监听等待音乐，接通时提醒
+  - Crash Detection：AI检测车祸并自动求救
+- **隐私与安全**：
+  - Private Compute Core：隔离的AI计算环境
+  - Federated Learning：本地学习，只上传模型更新
+  - 端侧语音处理：Google Assistant完全离线
+  - Titan M2协处理器：硬件级AI模型保护
 - Titan M2安全芯片，保护AI数据处理
 - 支持AV1编码，视频通话质量提升
 - **TPU v5架构特点**：
@@ -224,6 +332,10 @@
     - Horizontal fusion：水平融合，并行计算
     - Pattern matching：模式匹配自动融合
     - Graph optimization：计算图优化
+  - **实际效果**：
+    - BERT推理：从50ms降至30ms
+    - ResNet-50：从8ms降至5ms
+    - Transformer解码：延迟减少40%
 - 动态批处理：提高硬件利用率
   - 连续批处理（Continuous Batching）
   - 请求级并行调度
@@ -234,6 +346,10 @@
     - Iteration-level scheduling
     - Priority-based batching
     - Preemptive scheduling
+  - **应用场景**：
+    - 聊天机器人：同时处理100+用户
+    - 实时翻译：多路并发无干扰
+    - 图像生成：批量处理提速3倍
 - 稀疏计算：跳过零值运算
   - 2:4结构化稀疏（NVIDIA支持）
   - 动态稀疏激活
@@ -244,6 +360,10 @@
     - N:M sparsity：结构化稀疏模式
     - Dynamic sparsity：动态稀疏率
     - Sparse kernels：专用稀疏核函数
+  - **芯片支持**：
+    - 高通：Hexagon支持2:4稀疏
+    - Apple：ANE支持非结构化稀疏
+    - 联发科：APU支持块稀疏加速
 - 编译优化：针对特定硬件优化
   - TVM、MLIR等编译器框架
   - 硬件特定指令集优化
@@ -254,16 +374,29 @@
     - Polyhedral optimization
     - Loop tiling/unrolling
     - Vectorization优化
+  - **端侧框架**：
+    - TensorFlow Lite：Google官方轻量级
+    - Core ML：Apple生态深度集成
+    - NCNN：腾讯开源，适配广泛
+    - MNN：阿里开源，性能优秀
 - **端侧特殊加速**：
   - NPU专用指令：充分利用AI加速器
   - Heterogeneous computing：CPU+GPU+NPU协同
   - Edge TPU优化：Google的边缘计算方案
   - Model caching：模型缓存减少加载时间
+  - **实战案例**：
+    - 小米14：CPU预处理+NPU推理
+    - iPhone 15：GPU图像+ANE文本
+    - 三星S24：三路并行加速
 - **实时性保障**：
   - Deterministic execution：确定性执行
   - Deadline scheduling：截止时间调度
   - QoS guarantees：服务质量保证
   - Fallback mechanisms：降级机制
+  - **应用保障**：
+    - 视频通话：99.9%可用性
+    - 实时翻译：<100ms延迟
+    - 自动驾驶：硬实时保证
 
 ### 1.3 端侧AI的实际应用
 
@@ -273,6 +406,11 @@
   - 人像边缘检测精度提升到像素级
   - 玻璃、水面等透明物体识别准确率提升300%
   - 案例：iPhone 15 Pro人像模式可后期调整焦点
+  - **技术突破**：
+    - DeepLab v3+架构端侧部署
+    - 实时发丝级分割
+    - 3D深度估计精度达毫米级
+    - 动态场景识别：运动、逆光、夜景
 - 实时HDR视频：每帧独立tone mapping
   - 4K 60fps实时处理，延迟<16ms
   - 动态范围扩展至14档
@@ -288,6 +426,16 @@
   - AI运动补偿，避免拖影
   - 暗光人脸增强，肤色自然
   - vivo X100 Pro夜景视频亮度提升400%
+  - **技术细节**：
+    - Temporal Denoising：时域降噪
+    - Motion-aware fusion：运动感知融合
+    - RAW域处理：保留更多信息
+    - 实验数据：ISO 12800可用，清晰度媲美ISO 800
+- **AI电影效果**
+  - 电影模式：实时添加电影色调
+  - 景深模拟：单摄实现大光圈效果
+  - 动态范围映射：智能调整高光和阴影
+  - 实例：小米14 Pro大师镜头包，一键拍大片
 
 **智能助手升级**
 - 上下文理解：支持多轮对话，记忆达到8000 tokens
@@ -295,6 +443,11 @@
   - 隐式指代理解准确率95%
   - 支持打断和话题切换
   - 用户案例：连续对话30分钟规划旅行
+  - **技术实现**：
+    - Sliding window attention：滑动窗口注意力
+    - Hierarchical memory：分层记忆管理
+    - Context compression：上下文压缩存储
+    - 实测：2小时对话不遗忘关键信息
 - 多模态交互：语音、图像、文字混合输入
   - 拍照提问："这是什么植物？"
   - 语音+手势组合控制
@@ -310,10 +463,25 @@
   - 离线知识库覆盖Wikipedia精华
   - 紧急情况自动切换离线模式
   - 实测：飞行模式下可用功能达80%
+  - **离线能力**：
+    - 基础对话：3B参数模型本地运行
+    - 图像识别：1000+类别离线识别
+    - 语音转文字：多语言离线支持
+    - 智能建议：基于本地数据分析
+- **情感计算能力**
+  - 情绪识别：语音语调分析7种情绪
+  - 情感响应：根据用户情绪调整回复
+  - 压力检测：基于使用模式判断
+  - 应用：小米小爱同学情感模式
 
 **实时翻译突破**
 - 同声传译：延迟降至200ms以内
   - 支持面对面对话实时翻译
+  - **技术突破**：
+    - Streaming ASR：流式语音识别
+    - Incremental MT：增量式翻译
+    - Low-latency TTS：低延迟语音合成
+    - 缓冲策略：智能断句，平衡流畅度和准确性
   - 电话通话双向翻译
   - 会议模式：多人多语言识别
   - 三星Galaxy AI支持13种语言实时通话翻译
@@ -349,6 +517,12 @@
   - 手写笔记数字化
   - 智能表格识别
   - 小米澎湃OS支持跨设备文档协同
+- **创意工具AI化**
+  - AI绘画：文字描述生成图像
+  - 视频剪辑：智能剪辑和配乐
+  - 3D建模：2D图片转3D模型
+  - 音乐创作：哼唱生成完整歌曲
+  - 实例：vivo Origin OS 4创作套件
 
 ## 2. 折叠屏技术成熟
 
